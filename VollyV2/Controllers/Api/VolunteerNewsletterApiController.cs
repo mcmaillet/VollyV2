@@ -117,7 +117,7 @@ namespace VollyV2.Controllers.Api
             await _emailSender.SendEmailAsync(
                "maillet.mark@gmail.com",
                NewsletterSubject,
-               "hey buddy");
+               html);
 
             return Ok();
         }
