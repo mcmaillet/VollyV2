@@ -114,12 +114,12 @@ namespace VollyV2.Controllers.Api
 
             var emails = new List<string>();
             emails.Append("maillet.mark@gmail.com");
-            var test = await _emailSender.SendEmailsAsync(
+            await _emailSender.SendEmailsAsync(
                emails,
                NewsletterSubject,
                "html");
 
-            return Ok(test);
+            return Ok();
         }
 
         public async Task<IActionResult> RunJob()
