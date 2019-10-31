@@ -102,9 +102,9 @@ namespace VollyV2.Controllers.Api
             List<Opportunity> ongoingOpportunities,
             List<Opportunity> donationOpportunities)
         {
-            var mailChimpManager = new MailChimpManager(MailChimpApiKey);
+            // var mailChimpManager = new MailChimpManager(MailChimpApiKey);
 
-            var members = await mailChimpManager.Members.GetAllAsync(ListId).ConfigureAwait(false);
+            // var members = await mailChimpManager.Members.GetAllAsync(ListId).ConfigureAwait(false);
 
             var html = await GenerateSendGridHtmlFromOpportunitiesAsync(
                episodicOpportunities,
@@ -112,8 +112,10 @@ namespace VollyV2.Controllers.Api
                donationOpportunities);
 
 
+            var emails = new List<string>();
+            emails.Append("maillet.mark@gmail.com");
             await _emailSender.SendEmailsAsync(
-               members.Select(member => member.EmailAddress).ToList(),
+               emails,
                NewsletterSubject,
                html);
 
