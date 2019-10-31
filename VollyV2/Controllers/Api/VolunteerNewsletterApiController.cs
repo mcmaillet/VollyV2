@@ -82,11 +82,11 @@ namespace VollyV2.Controllers.Api
             var donation = PickRandom(
                 GetFilteredOpportunities(opportunities, OpportunityType.Donation));
 
-            var test = await CreateAndSendSendGridNewsletterAsync(
+            await CreateAndSendSendGridNewsletterAsync(
                episodic,
                ongoing,
                donation);
-            return Ok(test);
+            return Ok();
         }
 
         private List<Opportunity> GetFilteredOpportunities(IEnumerable<Opportunity> opportunities, OpportunityType opportunityType)
@@ -106,18 +106,18 @@ namespace VollyV2.Controllers.Api
 
             // var members = await mailChimpManager.Members.GetAllAsync(ListId).ConfigureAwait(false);
 
-            // var html = await GenerateSendGridHtmlFromOpportunitiesAsync(
-            //    episodicOpportunities,
-            //    ongoingOpportunities,
-            //    donationOpportunities);
+            var html = await GenerateSendGridHtmlFromOpportunitiesAsync(
+               episodicOpportunities,
+               ongoingOpportunities,
+               donationOpportunities);
 
 
             var emails = new List<string>();
             emails.Append("maillet.mark@gmail.com");
-            await _emailSender.SendEmailAsync(
-               "maillet.mark@gmail.com",
+            await _emailSender.SendEmailsAsync(
+               emails,
                NewsletterSubject,
-               "html");
+               html);
 
             return Ok();
         }
