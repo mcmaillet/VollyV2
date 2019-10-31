@@ -112,10 +112,8 @@ namespace VollyV2.Controllers.Api
                donationOpportunities);
 
 
-            var emails = new List<string>();
-            emails.Append("maillet.mark@gmail.com");
-            await _emailSender.SendEmailAsync(
-               "maillet.mark@gmail.com",
+            await _emailSender.SendEmailsAsync(
+                new List<string> { "maillet.mark@gmail.com", "alicelam22@gmail.com" },
                NewsletterSubject,
                html);
 
