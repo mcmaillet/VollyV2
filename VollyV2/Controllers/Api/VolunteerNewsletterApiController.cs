@@ -114,8 +114,8 @@ namespace VollyV2.Controllers.Api
 
             var emails = new List<string>();
             emails.Append("maillet.mark@gmail.com");
-            await _emailSender.SendEmailsAsync(
-               emails,
+            await _emailSender.SendEmailAsync(
+               "maillet.mark@gmail.com",
                NewsletterSubject,
                "hey buddy");
 
